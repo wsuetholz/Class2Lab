@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+	final int ROWS = 3;
+	final int COLS = 3;
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,30 +19,26 @@
 	<h1>Servlet PageGenerator at <%=request.getContextPath()%></h1>
 
 	<h2>Sample Table</h2>
-	<table>
+	<table border="1">
 	    <thead>
 		<tr>
-		    <th>Column 1</th>
-		    <th>Column 2</th>
-		    <th>Column 3</th>
-		</tr>
+		<%
+		    for (int cols = 0; cols < COLS; cols++) {
+			out.println("<th>Column " + Integer.toString(cols+1) + "</th>");
+		    }		
+		%>
+		</tr>	    
 	    </thead>
 	    <tbody>
-		<tr>
-		    <td>Value 1</td>	    
-		    <td>Value 2</td>	    
-		    <td>Value 3</td>	    
-		</tr>	    
-		<tr>
-		    <td>Value 1</td>	    
-		    <td>Value 2</td>	    
-		    <td>Value 3</td>	    
-		</tr>	    
-		<tr>
-		    <td>Value 1</td>	    
-		    <td>Value 2</td>	    
-		    <td>Value 3</td>	    
-		</tr>	    
+		<%
+		    for (int rows = 0; rows < ROWS; rows++) {
+			out.println("<tr>");
+			for (int cols = 0; cols < COLS; cols++) {
+			    out.println("<td>Value " + Integer.toString(cols+1) + "</td>");
+			}
+			out.println("</tr>");	    
+		    }
+		%>
 	    </tbody>
 
 	</table>

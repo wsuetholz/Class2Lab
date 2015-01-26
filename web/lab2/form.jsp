@@ -13,12 +13,12 @@
     </head>
     <body>
         <h1>Select Color</h1>
-	<form id="form1" name="form1" method="POST" action="../pager">
+	<form id="form1" name="form1" method="POST" action="<%= request.getContextPath() %>/pager">
 	    <b>Color:</b> <input type="text" id="color" name="color" value="Green"/><br/>
 	    <b>FirstName:</b> <input type="text" id="firstName" name="firstName" value=""/><br/>
 	    <b>LastName:</b> <input type="text" id="lastName" name="lastName" value=""/><br/>
 	    <input type="submit" name="submit" value="Submit Input"/>
-	    <button type="submit" name="submit" value="Submit Button"/>
+	    <button type="submit" name="submit" value="Submit Button">Submit Button</button>
 	</form> 
     </body>
 </html>

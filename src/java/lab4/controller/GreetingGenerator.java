@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab2.controller;
+package lab4.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lab4.model.WelcomeService;
 
 /**
  *
  * @author wsuetholz
  */
-public class PageGenerator extends HttpServlet {
+public class GreetingGenerator extends HttpServlet {
+   private static final String GREETING_PAGE = "lab4/greeting.jsp";
 
-    private static int COLS = 3;
-    private static int ROWS = 3;
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,55 +32,18 @@ public class PageGenerator extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	
+	WelcomeService welcomeService = new WelcomeService();
+	
 	response.setContentType("text/html;charset=UTF-8");
 	try (PrintWriter out = response.getWriter()) {
-	    /* TODO output your page here. You may use following sample code. */
-	    String color = request.getParameter("color");
-	    if (color == null || color.length() <= 0) {
-		color = "Red";
-	    }
-	    String firstName = request.getParameter("firstName");
-	    if (firstName == null || firstName.length() <= 0) {
-		firstName = "Hey";
-	    }
-	    String lastName = request.getParameter("lastName");
-	    if (lastName == null || lastName.length() <= 0) {
-		lastName = "You";
-	    }
-	    out.println("<!DOCTYPE html>");
-	    out.println("<html>");
-	    out.println("<head>");
-	    out.println("<title>Servlet PageGenerator</title>");	    
-	    out.println("</head>");
-	    out.println("<body>");
-	    out.println("<h1>Servlet PageGenerator at " + request.getContextPath() + "</h1>");
-	    
-	    out.println("<h2>Name " + firstName + " " + lastName + "</h2>");
-	    out.println("<h2>Sample " + color + " Table</h2>");
-	    out.println("<table border=\"1\">");
-	    out.println("<thead>");
-	    out.println("<tr>");
-	    for (int cols = 0; cols < COLS; cols++) {
-		out.println("<th>Column " + Integer.toString(cols+1) + "</th>");
-	    }
-	    out.println("</tr>");
-	    out.println("</thead>");
+	    String name = request.getParameter("name");
+	    String welcomeString = welcomeService.getWelcome(name);
+	    request.setAttribute("greetingMessage", welcomeString);
 
-	    out.println("<tbody>");
-	    for (int rows = 0; rows < ROWS; rows++) {
-		out.println("<tr>");
-		for (int cols = 0; cols < COLS; cols++) {
-		    out.println("<td>Value " + Integer.toString(cols+1) + "</td>");
-		}
-		out.println("</tr>");	    
-	    }
-	    out.println("</tbody>");
-	    
-	    out.println("</table>");
-	    
-	    out.println("</body>");
-	    out.println("</html>");
-	    
+	    RequestDispatcher view =
+                request.getRequestDispatcher(GREETING_PAGE);
+	    view.forward(request, response);
 	}
     }
 

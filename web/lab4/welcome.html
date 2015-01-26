@@ -6,16 +6,15 @@ and open the template in the editor.
 -->
 <html>
     <head>
-	<title>Class2 Lab Work</title>
+	<title>Welcome Page</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-	<h1>Class 2 Lab Work</h1>
-	<p><a href="pager">Pager</a></p>
-	<p><a href="pager?color=blue">Blue Pager</a></p>
-	<p><a href="lab2/form.jsp">Form Pager</a></p>
-	<p><a href="lab3/PageGenerator2.jsp">JSP Pager</a></p>
-	<p><a href="lab4/welcome.jsp">User Welcome Page</a></p>
+	<h1>Welcome User Name Input</h1>
+	<form id="form1" name="form1" method="POST" action="greeter">
+	    <b>User Name:</b> <input type="text" id="name" name="name" value=""/><br/>
+	    <input type="submit" name="submit" value="Submit Input"/>
+	</form> 
     </body>
 </html>

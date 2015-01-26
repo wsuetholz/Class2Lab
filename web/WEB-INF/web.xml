@@ -4,6 +4,10 @@
         <servlet-name>SecondServlet</servlet-name>
         <servlet-class>lab2.controller.SecondServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GreetingGenerator</servlet-name>
+        <servlet-class>lab4.controller.GreetingGenerator</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SecondServlet</servlet-name>
         <url-pattern>/SecondServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>PageGen</servlet-name>
         <url-pattern>/pager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GreetingGenerator</servlet-name>
+        <url-pattern>/greeter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
