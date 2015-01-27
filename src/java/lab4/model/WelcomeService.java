@@ -60,6 +60,24 @@ public class WelcomeService {
 	return ret;
     }
 
+    /**
+     * Simpler version that does the same thing copied from ndavis10 github
+     * 
+     * @return 
+     */
+    public String getTimeOfDay() {
+	Calendar today = Calendar.getInstance();
+	if(today.get(Calendar.HOUR_OF_DAY) >= AFTERNOON_EVENING_CUT) {
+	    return EVENING;
+	}
+	else if(today.get(Calendar.HOUR_OF_DAY) >= MORNING_AFTERNOON_CUT) {
+	    return AFTERNOON;
+	}
+	else {
+	    return MORNING;
+	}
+    }
+
     public String getWelcome (String name) {
 	String pubName;
 	if (name == null || name.length() < 0) {
@@ -70,4 +88,5 @@ public class WelcomeService {
 	
 	return "Good " + getMorningNoonNight() + ", " + pubName + ".  Welcome!" ;
     }
+    
 }
